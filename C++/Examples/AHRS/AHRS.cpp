@@ -108,15 +108,17 @@ void imuLoop()
     //-------- Read raw measurements from the MPU and update AHRS --------------
 
     // Accel + gyro.
-    imu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
-    ahrs.updateIMU(ax, ay, az, gx*0.0175, gy*0.0175, gz*0.0175, dt);
+  //  imu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
+   // ahrs.updateIMU(ax, ay, az, gx*0.0175, gy*0.0175, gz*0.0175, dt);
 
     // Accel + gyro + mag. 
     // Soft and hard iron calibration required for proper function.
-    /*
     imu.getMotion9(&ax, &ay, &az, &gx, &gy, &gz, &mx, &my, &mz);
+    mx=(mx-17.0317)/100; // Gauss, IMU output = micro Tesla
+    my=(my-25.7831)/100; // Gauss
+    mz=(mz+12.5051)/100; // Gauss
     ahrs.update(ax, ay, az, gx*0.0175, gy*0.0175, gz*0.0175, my, mx, -mz, dt);
-    */
+    
 
     //------------------------ Read Euler angles ------------------------------
 
